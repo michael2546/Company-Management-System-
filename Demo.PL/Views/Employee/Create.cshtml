@@ -1,0 +1,41 @@
+﻿
+@model Employee
+
+@inject IDepartmentRepository _departmentRepo
+@{ 
+    ViewData["Title"] = "Create";
+
+}
+
+<h1>Create New Employee</h1>
+
+<br />
+<br />
+
+<form asp-action="Create" enctype="multipart/form-data">
+
+    <partial name="PartialViews/CreateEditEmployeePartial" />
+
+    <input type="submit" value="Create" class="btn btn-primary" />
+    <a asp-action="Index" class="btn btn-light"> Back To List </a>
+</form>
+
+
+@*render this script in the _layout when call the create action *@
+@*to validate the client side validation using jquery liberary*@
+@*seperate this section from render body in layout*@
+@*--------------------------------------------------*@
+@* @section ValidationScriptSection{ 
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+} *@
+
+@* we can use the _ValidationScriptsPartial view built in ready to use  *@
+
+@section ValidationScriptSection{
+<partial name="_ValidationScriptsPartial" />
+}
+
+
+
+

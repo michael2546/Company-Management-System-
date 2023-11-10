@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Department>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>ALl Departments</h1>
+<br />
+<br />
+
+<a asp-controller="Department" asp-action="Create" class="btn btn-primary">Create New Department</a>
+
+<br />
+
+@if(Model.Count()>0)
+{
+    <table class="table table-striped table-hover mt-4">
+        <thead>
+            <tr> 
+                <th>@Html.DisplayNameFor(d=>d.Code)</th>
+                <th>@Html.DisplayNameFor(d=>d.Name)</th>
+                <th>@Html.DisplayNameFor(d=>d.DateOfCreation)</th>
+                <th>Details</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach(var department in Model)
+            {
+                <tr>
+                    <td>@department.Code</td>
+                    <td>@department.Name</td>
+                    <td>@department.DateOfCreation</td>
+                    <!--
+                    <td>
+                        <a asp-controller="Department" asp-action="Details" asp-route-id="@department.Id" class="btn btn-warning"> Details 📅</a>
+                        @* /Department/Details/10 *@
+                    </td>
+                    <td>
+                        <a asp-controller="Department" asp-action="Edit" asp-route-id="@department.Id" class="btn btn-success"> Update 🖊️</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Department" asp-action="Delete" asp-route-id="@department.Id" class="btn btn-danger"> Delete ❌</a>
+                    </td>
+                    -->
+                    <partial name="_ButtonPartial" model="@department.Id">
+                </tr>
+            } 
+            
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="mt-4 alert alert-warning">
+        <h3>There are no Departments 😞</h3>
+    </div>
+}
+
